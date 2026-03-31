@@ -4,6 +4,8 @@ pipeline {
     environment {
         GITHUB_TOKEN = credentials('github-pkumarcoverity')
         DETECT_EXCLUDED_DETECTOR_TYPES = "GIT"
+        BRIDGE_POLARIS_SERVERURL = 'https://poc.polaris.blackduck.com'
+        BRIDGE_POLARIS_ACCESSTOKEN = credentials('polaris-se')
     }
 
     tools {
