@@ -41,7 +41,7 @@ pipeline {
                 security_scan product: 'polaris',
                     polaris_assessment_types: 'SAST,SCA',
                     polaris_application_name: "pkumarb-cicd",
-                    polaris_project_name: "$REPO_NAME",
+                    polaris_project_name: "hello-java",
                     polaris_prComment_enabled: false,
                     polaris_reports_sarif_create: false,
                     coverity_build_command: 'mvn -B -DskipTests package',
