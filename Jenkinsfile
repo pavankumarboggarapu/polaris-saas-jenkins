@@ -36,13 +36,17 @@ pipeline {
 
         stage('Coverity Scan') {
             steps {
-                security_scan product: 'blackducksca',
-                    blackducksca_scan_failure_severities: 'BLOCKER',
-                    blackducksca_prComment_enabled: true,
-                    blackducksca_reports_sarif_create: true,
-                    mark_build_status: 'UNSTABLE',
-                    github_token: "${env.GITHUB_TOKEN}",
-                    include_diagnostics: false
+                security_scan product: 'polaris',
+                    polaris_assessment_types: 'SAST,SCA',
+                    polaris_application_name: "pkumarb-cicd",
+                    polaris_project_name: "$REPO_NAME",
+                    polaris_prComment_enabled: false,
+                    polaris_reports_sarif_create: false,
+                    coverity_build_command: 'mvn -B -DskipTests package',
+                    coverity_clean_command: 'mvn -B clean',
+                    github_token: "$GITHUB_TOKEN",
+                    include_diagnostics: false,
+                    mark_build_status: 'UNSTABLE'
             }
         }
     }
